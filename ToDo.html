@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+</head>
+<body>
+
+<h1>To-Do List</h1>
+
+<form>
+    <label for="adding">Add to ToDo List</label>
+    <input type="text" id="adding" name="adding"><br><br>
+    <button id="addTaskButton">Add Task</button>
+</form>
+
+<ul id="taskList"></ul>
+
+<script>
+    var tasks = [];
+
+    document.getElementById("addTaskButton").addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        var taskInput = document.getElementById("adding");
+        var taskList = document.getElementById("taskList");
+
+        var newTask = {
+            name: taskInput.value,
+            completed: false
+        };
+
+        tasks.push(newTask);
+
+        taskInput.value = "";
+
+        displayTasks();
+    });
+
+    function displayTasks() {
+        var taskList = document.getElementById("taskList");
+
+        taskList.innerHTML = "";
+
+        tasks.forEach(function(task, index) {
+            var listItem = document.createElement("li");
+            listItem.textContent = task.name;
+
+            if (task.completed) {
+                listItem.style.textDecoration = "line-through";
+            }
+
+            listItem.addEventListener("click", function() {
+                toggleTaskCompletion(index);
+            });
+
+            taskList.appendChild(listItem);
+        });
+    }
+
+    function toggleTaskCompletion(index) {
+        tasks[index].completed = !tasks[index].completed;
+        displayTasks();
+    }
+</script>
+</body>
+</html>
