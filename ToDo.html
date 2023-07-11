@@ -20,10 +20,9 @@
     var tasks = [];
 
     document.getElementById("addTaskButton").addEventListener("click", function(event) {
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault(); 
 
         var taskInput = document.getElementById("adding");
-        var taskList = document.getElementById("taskList");
 
         var newTask = {
             name: taskInput.value,
@@ -35,6 +34,7 @@
         taskInput.value = "";
 
         displayTasks();
+        saveTasks();
     });
 
     function displayTasks() {
@@ -61,7 +61,23 @@
     function toggleTaskCompletion(index) {
         tasks[index].completed = !tasks[index].completed;
         displayTasks();
+        saveTasks();
     }
+
+    function saveTasks() {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+
+    function loadTasks() {
+        var savedTasks = localStorage.getItem("tasks");
+
+        if (savedTasks) {
+            tasks = JSON.parse(savedTasks);
+            displayTasks();
+        }
+    }
+
+    loadTasks();
 </script>
 </body>
 </html>
