@@ -6,54 +6,76 @@
 </head>
 <body>
 
-<button type="button" style="background-color: rgb(221, 198, 232);" class="button" onclick="getRandomGreeting()">  surprise me!</button>
+<button type="button" style="background-color: rgb(221, 198, 232);" class="button" onclick="getTops()">  surprise me!</button>
 
 <p id="greeting"></p>
+<p id="bottom"></p>
 
 
-<button type = "button" class = "button" onclick="getTop()"> see tops </button>
+<button type = "button" class = "button" onclick="getTops()"> see tops </button>
+<button type = "button" class = "button" onclick="getNextTops()"> next > </button> <br>
 <button type = "button" class = "button" onclick="getBottoms()"> see bottoms </button>
-<button type = "button" class = "button" onclick="getNext()"> next > </button>
+<button type = "button" class = "button" onclick="getNextTops()"> next > </button>
 
 <script>
     let currentIndex = -1;
-    const greetings = ['Black and White',
-        'Blue and White',
-        'Red and White',
-        'Navy and Beige',
-        'Gray and Pink',
-        'Brown and Cream',
-        'Green and Brown',
-        'Yellow and Gray',
-        'Purple and Silver',
-        'Orange and Blue'];
+    const tops = ['Black - top',
+        'Blue - top',
+        'Red - top',
+        'Navy - top',
+        'Gray - top',
+        'Brown - top',
+        'Green - top',
+        'Yellow - top',
+        'Purple - top',
+        'Orange - top'];
 
-    function getRandomGreeting() {
+    const bottoms = ['Black - bottom',
+        'White - bottom',
+        'Purple - bottom',
+        'Beige - bottom',
+        'Pink - bottom',
+        'Cream - bottom',
+        'Brown - bottom',
+        'Gray - bottom',
+        'Silver - bottom',
+        'Blue - bottom'];
+
+
+
+    function getNextTops() {
+
+        if(currentIndex !== tops.length - 1){
+            currentIndex = (currentIndex + 1) % tops.length;
+
+            const nextCombo = tops[currentIndex];
+
+            document.getElementById('greeting').innerText = nextCombo;
+
+        }
+    }
+
+    function getTops() {
         fetch('/random-greeting')
             .then(response => response.text())
             .then(data => document.getElementById('greeting').innerText = data);
     }
 
-    function getNext() {
-        if(currentIndex !== greetings.length - 1){
-            currentIndex = (currentIndex + 1) % greetings.length;
+     function getNextBottoms() {
+        if(currentIndex !== bottoms.length - 1){
+            currentIndex = (currentIndex + 1) % bottoms.length;
 
-            const nextCombo = greetings[currentIndex];
+            const nextCombo = bottoms[currentIndex];
 
-            document.getElementById('greeting').innerText = nextCombo;
+            document.getElementById('bottom').innerText = nextCombo;
 
-            getTops();
         }
     }
 
-    function getTops() {
-        fetch('/show-tops')
+    function getBottoms() {
+        fetch('/random-bottom')
             .then(response => response.text())
-            .then(topImageURL => {
-                document.getElementById('topImage').src = topImageURL;
-                document.getElementById('topImage').style.display = 'block';
-                document.getElementById('bottomImage').style.display = 'none';
-            });
+            .then(data => document.getElementById('bottom').innerText = data);
     }
 
 </script>
