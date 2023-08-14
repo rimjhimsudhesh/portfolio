@@ -10,13 +10,54 @@
 
 <p id="greeting"></p>
 
+
+<button type = "button" class = "button" onclick="getTop()"> see tops </button>
+<button type = "button" class = "button" onclick="getBottoms()"> see bottoms </button>
+<button type = "button" class = "button" onclick="getNext()"> next > </button>
+
 <script>
+    let currentIndex = -1;
+    const greetings = ['Black and White',
+        'Blue and White',
+        'Red and White',
+        'Navy and Beige',
+        'Gray and Pink',
+        'Brown and Cream',
+        'Green and Brown',
+        'Yellow and Gray',
+        'Purple and Silver',
+        'Orange and Blue'];
+
     function getRandomGreeting() {
         fetch('/random-greeting')
             .then(response => response.text())
             .then(data => document.getElementById('greeting').innerText = data);
     }
+
+    function getNext() {
+        if(currentIndex !== greetings.length - 1){
+            currentIndex = (currentIndex + 1) % greetings.length;
+
+            const nextCombo = greetings[currentIndex];
+
+            document.getElementById('greeting').innerText = nextCombo;
+
+            getTops();
+        }
+    }
+
+    function getTops() {
+        fetch('/show-tops')
+            .then(response => response.text())
+            .then(topImageURL => {
+                document.getElementById('topImage').src = topImageURL;
+                document.getElementById('topImage').style.display = 'block';
+                document.getElementById('bottomImage').style.display = 'none';
+            });
+    }
+
 </script>
+
 
 </body>
 </html>

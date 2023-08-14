@@ -1,6 +1,15 @@
 const express = require('express');
 const app = express();
-const greetings = ['Hello World!', 'Hola Mundo!', 'Namasthe Duniya!'];
+const greetings = ['Black and White',
+                                        'Blue and White',
+                                        'Red and White' ,
+                                        'Navy and Beige' ,
+                                        'Gray and Pink' ,
+                                        'Brown and Cream' ,
+                                        'Green and Brown' ,
+                                        'Yellow and Gray' ,
+                                        'Purple and Silver' ,
+                                        'Orange and Blue'];
 
 app.use(express.static('public'));
 
