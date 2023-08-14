@@ -1,20 +1,36 @@
 const express = require('express');
 const app = express();
-const greetings = ['Black and White',
-                                        'Blue and White',
-                                        'Red and White' ,
-                                        'Navy and Beige' ,
-                                        'Gray and Pink' ,
-                                        'Brown and Cream' ,
-                                        'Green and Brown' ,
-                                        'Yellow and Gray' ,
-                                        'Purple and Silver' ,
-                                        'Orange and Blue'];
+const tops = ['Black - top',
+                     'Blue - top',
+                     'Red - top',
+                     'Navy - top',
+                     'Gray - top',
+                     'Brown - top',
+                     'Green - top',
+                     'Yellow - top',
+                     'Purple - top',
+                     'Orange - top'];
+
+const bottoms = ['Black - bottom',
+                        'White - bottom',
+                        'Purple - bottom',
+                        'Beige - bottom',
+                        'Pink - bottom',
+                        'Cream - bottom',
+                        'Brown - bottom',
+                        'Gray - bottom',
+                        'Silver - bottom',
+                        'Blue - bottom'];
 
 app.use(express.static('public'));
 
 app.get('/random-greeting', (req, res) => {
-    const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+    const randomGreeting = tops[Math.floor(Math.random() * tops.length)];
+    res.send(randomGreeting);
+});
+
+app.get('/random-bottom', (req, res) => {
+    const randomGreeting = bottoms[Math.floor(Math.random() * bottoms.length)];
     res.send(randomGreeting);
 });
 
