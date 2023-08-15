@@ -2,84 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Random Greeting</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Viewer</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="navigation-buttons">
+    <button id="prevButtonTops">Previous</button>
+    <button id="nextButtonTops">Next</button>
+</div>
+<div class="image-container">
+    <img id="imageTops" src="" alt="Tops Image">
+</div>
+<div class="image-container">
+    <img id="imageBottoms" src="" alt="Bottoms Image">
+</div>
+<div class="navigation-buttons">
+    <button id="prevButtonBottoms">Previous</button>
+    <button id="nextButtonBottoms">Next</button>
+</div>
 
-<button type="button" style="background-color: rgb(221, 198, 232);" class="button" onclick="getTops()">  surprise me!</button>
-
-<p id="greeting"></p>
-<p id="bottom"></p>
-
-
-<button type = "button" class = "button" onclick="getTops()"> see tops </button>
-<button type = "button" class = "button" onclick="getNextTops()"> next > </button> <br>
-<button type = "button" class = "button" onclick="getBottoms()"> see bottoms </button>
-<button type = "button" class = "button" onclick="getNextTops()"> next > </button>
-
-<script>
-    let currentIndex = -1;
-    const tops = ['Black - top',
-        'Blue - top',
-        'Red - top',
-        'Navy - top',
-        'Gray - top',
-        'Brown - top',
-        'Green - top',
-        'Yellow - top',
-        'Purple - top',
-        'Orange - top'];
-
-    const bottoms = ['Black - bottom',
-        'White - bottom',
-        'Purple - bottom',
-        'Beige - bottom',
-        'Pink - bottom',
-        'Cream - bottom',
-        'Brown - bottom',
-        'Gray - bottom',
-        'Silver - bottom',
-        'Blue - bottom'];
-
-
-
-    function getNextTops() {
-
-        if(currentIndex !== tops.length - 1){
-            currentIndex = (currentIndex + 1) % tops.length;
-
-            const nextCombo = tops[currentIndex];
-
-            document.getElementById('greeting').innerText = nextCombo;
-
-        }
-    }
-
-    function getTops() {
-        fetch('/random-greeting')
-            .then(response => response.text())
-            .then(data => document.getElementById('greeting').innerText = data);
-    }
-
-     function getNextBottoms() {
-        if(currentIndex !== bottoms.length - 1){
-            currentIndex = (currentIndex + 1) % bottoms.length;
-
-            const nextCombo = bottoms[currentIndex];
-
-            document.getElementById('bottom').innerText = nextCombo;
-
-        }
-    }
-
-    function getBottoms() {
-        fetch('/random-bottom')
-            .then(response => response.text())
-            .then(data => document.getElementById('bottom').innerText = data);
-    }
-
-</script>
-
-
+<script src="script.js"></script>
 </body>
 </html>
