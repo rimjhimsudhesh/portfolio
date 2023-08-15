@@ -1,0 +1,18 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.image-container {
+  margin: 20px auto;
+  vertical-align: top;
+}
+
+.image-container img {
+  width: 300px; /* Adjust the width as needed */
+  height: 300px; /* Adjust the height as needed */
+}
+
+.navigation-buttons {
+  margin: 10px auto;
+}
